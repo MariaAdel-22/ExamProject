@@ -1,0 +1,171 @@
+<main class="music-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al nidito">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <div class="page-badge">
+      <span aria-hidden="true">♪</span>
+      Nuestra banda sonora
+    </div>
+  </header>
+
+  <section class="intro" aria-labelledby="music-title">
+    <p class="intro__eyebrow">Para estudiar, descansar o simplemente sentirme cerca</p>
+
+    <h1 id="music-title">
+      Música elegida
+      <span>pensando en ti.</span>
+    </h1>
+
+    <p class="intro__copy">
+      Una pequeña playlist para hacerte compañía siempre que quieras.
+      Dale al play cuando necesites llenar un poquito el silencio.
+    </p>
+  </section>
+
+  <section class="music-card" aria-labelledby="playlist-heading">
+    <div class="music-visual" aria-hidden="true">
+      <div class="record-player">
+        <div class="record-player__lid"></div>
+
+        <div class="record-player__base">
+          <div class="vinyl">
+            <span class="vinyl__groove vinyl__groove--one"></span>
+            <span class="vinyl__groove vinyl__groove--two"></span>
+            <span class="vinyl__groove vinyl__groove--three"></span>
+            <span class="vinyl__label">
+              <span>♥</span>
+            </span>
+          </div>
+
+          <div class="tonearm">
+            <span class="tonearm__pivot"></span>
+            <span class="tonearm__arm"></span>
+            <span class="tonearm__needle"></span>
+          </div>
+        </div>
+
+        <span class="music-note music-note--one">♪</span>
+        <span class="music-note music-note--two">♫</span>
+        <span class="music-note music-note--three">♪</span>
+      </div>
+
+      <div class="cassette-note">
+        <span>PARA TI</span>
+        <strong>con mucho amor</strong>
+        <i>♥</i>
+      </div>
+    </div>
+
+    <div class="music-card__content">
+      <p class="music-card__kicker">Hecha canción por canción</p>
+      <h2 id="playlist-heading">{{ playlistTitle }}</h2>
+      <p class="music-card__dedication">{{ dedication }}</p>
+
+      <div class="playlist-chips" aria-label="Para escuchar cuando quieras">
+        <span>☁ Para estudiar</span>
+        <span>♡ Para descansar</span>
+        <span>✦ Para acompañarte</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="player-section" aria-labelledby="player-title">
+    <header class="player-section__heading">
+      <div>
+        <p>Dale al play</p>
+        <h2 id="player-title">Tu playlist está aquí</h2>
+      </div>
+
+      <span class="player-section__heart" aria-hidden="true">♡</span>
+    </header>
+
+    @if (hasPlaylist) {
+      <div class="youtube-frame">
+        <iframe
+          [src]="playlistEmbedUrl"
+          title="Playlist de YouTube hecha para ti"
+          loading="lazy"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="player-actions">
+        <p>
+          <span aria-hidden="true">♥</span>
+          Puedes dejarla sonando mientras estudias.
+        </p>
+
+        <a
+          class="youtube-link"
+          [href]="playlistPublicUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Abrir en YouTube
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    } @else {
+      <div class="playlist-setup">
+        <div class="playlist-setup__icon" aria-hidden="true">🎧</div>
+
+        <div>
+          <p class="playlist-setup__eyebrow">Solo falta una cosita</p>
+          <h3>Añade el ID de tu playlist</h3>
+
+          <p>
+            Abre <strong>musica-para-ti.component.ts</strong> y sustituye:
+          </p>
+
+          <code>PEGA_AQUI_EL_ID_DE_TU_PLAYLIST</code>
+
+          <p class="playlist-setup__example">
+            Si el enlace termina en
+            <strong>?list=PLabc123...</strong>,
+            tienes que pegar solamente <strong>PLabc123...</strong>.
+          </p>
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="listening-notes" aria-label="Pequeños recordatorios">
+    <article class="listening-note listening-note--purple">
+      <span aria-hidden="true">☁</span>
+      <div>
+        <strong>Sin presión</strong>
+        <p>Desconecta cuando lo necesites o recupera energías si te hace falta.</p>
+      </div>
+    </article>
+
+    <article class="listening-note listening-note--peach">
+      <span aria-hidden="true">♫</span>
+      <div>
+        <strong>Escucha las que me hacen pensar en ti</strong>
+        <p>Hay canciones que pueden ayudarte para estar concentrada o desconectar.</p>
+      </div>
+    </article>
+
+    <article class="listening-note listening-note--pink">
+      <span aria-hidden="true">♥</span>
+      <div>
+        <strong>Acuérdate de mí</strong>
+        <p>Yo probablemente también esté pensando en ti mi tesorito.</p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="music-footer">
+    <span aria-hidden="true">♪</span>
+    <p>Ojalá alguna canción consiga hacer que me sientas a tu lado.</p>
+    <span aria-hidden="true">♪</span>
+  </footer>
+</main>

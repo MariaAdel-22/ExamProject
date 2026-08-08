@@ -33,10 +33,10 @@ export class HomeComponent {
     { icon: '🧠', title: 'Modo estudio', description: 'Un temporizador para concentrarte sin olvidarte de descansar.', accent: 'sage', route: '/modo-estudio' },
     { icon: '✨', title: 'Necesito motivación', description: 'Un poquito de ánimo justo cuando lo necesites.', accent: 'peach', route: '/necesito-motivacion' },
     { icon: '🫂', title: 'Abrazo de emergencia', description: 'Porque la distancia no debería impedir un abrazo.', accent: 'pink', route: '/abrazo-emergencia' },
-    { icon: '🎧', title: 'Música para ti', description: 'Un rincón para estudiar, respirar y desconectar.', accent: 'purple' },
+    { icon: '🎧', title: 'Música para ti', description: 'Un rincón para estudiar, respirar y desconectar.', accent: 'purple', route: '/musica-para-ti' },
     { icon: '🌡️', title: '¿Cómo te sientes?', description: 'Cuéntame cómo va el día y encuentra algo para ti.', accent: 'pink', route: '/como-te-sientes' },
     { icon: '📅', title: 'Cuenta atrás', description: 'Cada día es uno menos para terminar esta locura.', accent: 'sage', route: '/cuenta-atras' },
-    { icon: '🥚', title: 'Secretos escondidos', description: 'Puede que haya alguna sorpresa esperando por aquí.', accent: 'peach' }
+    { icon: '🥚', title: 'Secretos escondidos', description: 'Puede que haya alguna sorpresa esperando por aquí.', accent: 'peach', route: '/secretos-escondidos' }
   ];
 
   protected playGreeting(): void {
