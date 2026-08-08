@@ -1,0 +1,125 @@
+<main class="study-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="study-topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al refugio">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <span class="study-topbar__badge">
+      <span aria-hidden="true">♥</span>
+      Modo estudio
+    </span>
+  </header>
+
+  <section class="study-intro" aria-labelledby="study-title">
+    <p class="study-intro__eyebrow">Un ratito para avanzar juntas</p>
+    <h1 id="study-title">Solo una cosa<br><span>cada vez.</span></h1>
+    <p>
+      Elige cuánto quieres concentrarte mi tesoro y deja que yo lleve la cuenta por ti.
+    </p>
+  </section>
+
+  <section class="study-layout" aria-label="Temporizador Pomodoro">
+    <article class="timer-card">
+      <div class="mode-switch" aria-label="Tipo de sesión">
+        <button
+          type="button"
+          [class.is-active]="mode() === 'focus'"
+          (click)="setMode('focus')"
+        >
+          🧠 Concentración
+        </button>
+
+        <button
+          type="button"
+          [class.is-active]="mode() === 'break'"
+          (click)="setMode('break')"
+        >
+          ☕ Descanso
+        </button>
+      </div>
+
+      <div class="duration-picker" [class.is-disabled]="mode() === 'break'">
+        <span class="duration-picker__label">Elige tu sesión</span>
+
+        <div class="duration-picker__options">
+          @for (duration of durations; track duration.minutes) {
+            <button
+              type="button"
+              [class.is-active]="mode() === 'focus' && focusMinutes() === duration.minutes"
+              [disabled]="mode() === 'break'"
+              (click)="selectDuration(duration.minutes)"
+            >
+              {{ duration.label }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div
+        class="timer-ring"
+        [style.--progress]="progress() + '%'"
+        [class.is-running]="isRunning()"
+        role="timer"
+        [attr.aria-label]="modeLabel() + ': ' + formattedTime()"
+      >
+        <div class="timer-ring__inside">
+          <span class="timer-ring__label">{{ modeLabel() }}</span>
+          <strong>{{ formattedTime() }}</strong>
+          <span class="timer-ring__tiny">
+            {{ mode() === 'focus' ? 'Paso a paso' : 'Respira, estira, descansa' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="timer-actions">
+        <button class="timer-actions__primary" type="button" (click)="toggleTimer()">
+          <span aria-hidden="true">{{ isRunning() ? 'Ⅱ' : '▶' }}</span>
+          {{ isRunning() ? 'Pausar' : 'Empezar' }}
+        </button>
+
+        <button class="timer-actions__secondary" type="button" (click)="resetTimer()">
+          ↻ Reiniciar
+        </button>
+      </div>
+
+      <p class="timer-status" role="status" aria-live="polite">
+        {{ statusMessage() }}
+      </p>
+    </article>
+
+    <aside class="study-companion" aria-label="Pequeños recordatorios">
+      <div class="companion-card companion-card--sessions">
+        <span class="companion-card__icon" aria-hidden="true">✦</span>
+        <div>
+          <p>Sesiones terminadas</p>
+          <strong>{{ sessionsCompleted() }}</strong>
+          <span>Cada una cuenta, así que avanza sin miedo.</span>
+        </div>
+      </div>
+
+      <div class="companion-card">
+        <span class="companion-card__icon" aria-hidden="true">💧</span>
+        <div>
+          <p>Mientras estudias...</p>
+          <strong>Cuídate también</strong>
+          <span>Toma agua, algo de comer y cinco minutos lejos de los apuntes para descansar esos preciosos ojos que tienes.</span>
+        </div>
+      </div>
+
+      <blockquote class="study-note">
+        <span aria-hidden="true">♡</span>
+        <p>Lo que importa es todo el esfuerzo que estás poniendo para llegar hasta aquí.</p>
+      </blockquote>
+    </aside>
+  </section>
+
+  <footer class="study-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Yo llevo el tiempo. Tú solo ocúpate del siguiente pasito.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>

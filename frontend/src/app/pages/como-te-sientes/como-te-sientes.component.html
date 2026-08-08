@@ -1,0 +1,110 @@
+<main class="mood-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al nidito">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <div class="page-badge">
+      <span aria-hidden="true">♥</span>
+      Un ratito para ti
+    </div>
+  </header>
+
+  <section class="intro" aria-labelledby="mood-title">
+    <p class="intro__eyebrow">No tienes que agobiarte, ve con calma</p>
+    <h1 id="mood-title">
+      ¿Cómo te
+      <span>sientes hoy?</span>
+    </h1>
+
+    <p class="intro__copy">
+      Elige al pandita que más se parezca a cómo estás ahora.
+    </p>
+  </section>
+
+  <section class="mood-card" aria-labelledby="mood-question">
+    <div class="mood-card__heading">
+      <div>
+        <p>Ahora mismo...</p>
+        <h2 id="mood-question">¿Cuál de estas eres tú?</h2>
+      </div>
+      <span class="mood-card__heart" aria-hidden="true">♡</span>
+    </div>
+
+    <div class="mood-grid" role="group" aria-label="Elige cómo te sientes">
+      @for (mood of moods; track mood.id) {
+        <button
+          class="mood-option"
+          type="button"
+          [attr.data-mood]="mood.id"
+          [class.is-selected]="selectedMood()?.id === mood.id"
+          [attr.aria-pressed]="selectedMood()?.id === mood.id"
+          (click)="chooseMood(mood)"
+        >
+          <div class="panda-mood" [attr.data-mood]="mood.id" aria-hidden="true">
+            <span class="panda-mood__bunny-ear panda-mood__bunny-ear--left"></span>
+            <span class="panda-mood__bunny-ear panda-mood__bunny-ear--right"></span>
+
+            <span class="panda-mood__head">
+              <span class="panda-mood__headband"></span>
+
+              <span class="panda-mood__eye panda-mood__eye--left"></span>
+              <span class="panda-mood__eye panda-mood__eye--right"></span>
+
+              <span class="panda-mood__nose"></span>
+              <span class="panda-mood__mouth"></span>
+              <span class="panda-mood__tear"></span>
+              <span class="panda-mood__sweat"></span>
+            </span>
+
+            <span class="panda-mood__shirt"></span>
+          </div>
+
+          <span class="mood-option__label">{{ mood.label }}</span>
+          <span class="mood-option__hint">{{ mood.hint }}</span>
+        </button>
+      }
+    </div>
+
+    @if (selectedMood(); as mood) {
+      <div
+        class="mood-response"
+        [attr.data-mood]="mood.id"
+        role="status"
+        aria-live="polite"
+      >
+        <div class="mood-response__topline">
+          <span aria-hidden="true">♥</span>
+          Entonces ven un poquito por aquí
+        </div>
+
+        <h3>{{ mood.label }}</h3>
+        <p>{{ mood.message }}</p>
+
+        <div class="mood-response__reminder">
+          <span aria-hidden="true">✦</span>
+          <p>{{ mood.reminder }}</p>
+        </div>
+
+        <button class="choose-again" type="button" (click)="clearMood()">
+          Elegir otra emoción
+        </button>
+      </div>
+    } @else {
+      <div class="mood-empty" aria-hidden="true">
+        <span>♡</span>
+        <p>Cuando elijas uno, te dejaré aquí un mensajito.</p>
+      </div>
+    }
+  </section>
+
+  <footer class="mood-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Sea cual sea la respuesta, sigo estando aquí contigo.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>

@@ -1,0 +1,127 @@
+<main class="home-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-heart" aria-hidden="true">♥</span>
+         Acompañándote en éstos días de exámenes
+      </div>
+
+      <p class="hero__eyebrow">Un pequeño lugar hecho con amor</p>
+      <h1 id="hero-title">Para cuando <br><span>se haga un poquito estresante.</span></h1>
+      <p class="hero__copy">
+       Sé que no puedo acompañarte como quiero estos días al no estar en casa, así que hice este rincón para estar contigo de otra manera.
+      </p>
+
+      <div class="hero__note" role="note">
+        <span class="hero__note-icon" aria-hidden="true">💜</span>
+        <div>
+          <strong>Recordatorio de hoy</strong>
+          <p>Solo avanza un poquito cada vez sin agotarte.</p>
+        </div>
+      </div>
+
+      <a class="hero__cta" href="#rincones">
+        Entrar a tu nidito
+        <span aria-hidden="true">↓</span>
+      </a>
+    </div>
+
+    <div class="hero__pet" aria-label="Tu pequeño panda acompañante">
+      @if (isGreeting) {
+        <div class="panda-message" role="status" aria-live="polite">
+          <span aria-hidden="true">💜</span>
+          ¿Cómo vas mi pichoncita?
+        </div>
+      }
+
+      <button
+        class="panda-tamagotchi"
+        type="button"
+        (click)="playGreeting()"
+        [class.is-greeting]="isGreeting"
+        [disabled]="isGreeting"
+        aria-label="Tocar al panda para que te salude"
+      >
+        <video
+          #idleVideo
+          class="panda-video panda-video--idle"
+          [class.is-active]="!isGreeting"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/videos/panda-idle.webm" type="video/webm">
+        </video>
+
+        <video
+          #greetingVideo
+          class="panda-video panda-video--greeting"
+          [class.is-active]="isGreeting"
+          muted
+          playsinline
+          preload="auto"
+          (ended)="finishGreeting()"
+          aria-hidden="true"
+        >
+          <source src="/videos/panda-saludo.webm" type="video/webm">
+        </video>
+      </button>
+
+      <p class="panda-hint" [class.is-hidden]="isGreeting">
+        <span aria-hidden="true">♡</span> Tócame
+      </p>
+    </div>
+  </section>
+
+    <section class="features" id="rincones" aria-labelledby="features-title">
+    <header class="section-heading">
+      <span class="section-heading__sparkle" aria-hidden="true">✦</span>
+      <div>
+        <p>Elige lo que necesites ahora</p>
+        <h2 id="features-title">Este rincón es para ti</h2>
+      </div>
+    </header>
+
+    <div class="features__grid">
+      @for (feature of features; track feature.title) {
+        @if (feature.route) {
+          <a
+            class="feature-card feature-card--link"
+            [routerLink]="feature.route"
+            [attr.data-accent]="feature.accent"
+          >
+            <div class="feature-card__icon" aria-hidden="true">{{ feature.icon }}</div>
+            <div class="feature-card__content">
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.description }}</p>
+            </div>
+            <span class="feature-card__arrow" aria-hidden="true">›</span>
+            <span class="feature-card__ready">Entrar</span>
+          </a>
+        } @else {
+          <article class="feature-card" [attr.data-accent]="feature.accent">
+            <div class="feature-card__icon" aria-hidden="true">{{ feature.icon }}</div>
+            <div class="feature-card__content">
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.description }}</p>
+            </div>
+            <span class="feature-card__arrow" aria-hidden="true">›</span>
+            <span class="feature-card__soon">Próximamente</span>
+          </article>
+        }
+      }
+    </div>
+  </section>
+
+  <footer class="home-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Siempre estoy pensando en ti.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600&display=swap');
+
+:root {
+  --purple-primary: #7A5C8E;
+  --purple-light: #A88BB8;
+  --purple-dark: #4E3A59;
+  --background-main: #FFF8F4;
+  --background-soft: #F3EDF7;
+  --pink-soft: #D9A6B2;
+  --peach-soft: #F1C6A8;
+  --sage: #A7B8A0;
+  --text-primary: #3C303B;
+  --text-secondary: #776B78;
+  --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-handwritten: 'Caveat', cursive;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background-main);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 90% 5%, rgba(168, 139, 184, .15), transparent 30%),
+    radial-gradient(circle at 4% 70%, rgba(241, 198, 168, .12), transparent 28%),
+    linear-gradient(160deg, #fffaf7 0%, var(--background-main) 45%, #f8f1f8 100%);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(168, 139, 184, .28);
+  color: var(--purple-dark);
+}
