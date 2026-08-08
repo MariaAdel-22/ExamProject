@@ -29,7 +29,7 @@ export class HomeComponent {
   protected isGreeting = false;
 
   protected readonly features: FeatureCard[] = [
-    { icon: '💌', title: 'Abrir cuando...', description: 'Cartas para cada momento de esta semana.', accent: 'purple' },
+    { icon: '💌', title: 'Abrir cuando...', route: '/abrir-cuando', description: 'Cartas para cada momento de esta semana.', accent: 'purple' },
     { icon: '🧠', title: 'Modo estudio', description: 'Un temporizador para concentrarte sin olvidarte de descansar.', accent: 'sage', route: '/modo-estudio' },
     { icon: '✨', title: 'Necesito motivación', description: 'Un poquito de ánimo justo cuando lo necesites.', accent: 'peach', route: '/necesito-motivacion' },
     { icon: '🫂', title: 'Abrazo de emergencia', description: 'Porque la distancia no debería impedir un abrazo.', accent: 'pink', route: '/abrazo-emergencia' },

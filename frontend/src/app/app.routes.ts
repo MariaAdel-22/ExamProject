@@ -7,6 +7,7 @@ import { NecesitoMotivacionComponent } from './pages/necesito-motivacion/necesit
 import { AbrazoEmergenciaComponent } from './pages/abrazo-emergencia/abrazo-emergencia.component';
 import { SecretosEscondidosComponent } from './pages/secretos-escondidos/secretos-escondidos.component';
 import { MusicaParaTiComponent } from './pages/musica-para-ti/musica-para-ti.component';
+import { AbrirCuandoComponent } from './pages/abrir-cuando/abrir-cuando.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'abrazo-emergencia', component: AbrazoEmergenciaComponent },
   { path: 'secretos-escondidos', component: SecretosEscondidosComponent },
   { path: 'musica-para-ti', component: MusicaParaTiComponent },
+  { path: 'abrir-cuando', component: AbrirCuandoComponent },
   { path: '**', redirectTo: '' }
 ];

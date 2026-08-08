@@ -1,0 +1,167 @@
+<main class="letters-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al nidito">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <div class="page-badge">
+      <span aria-hidden="true">✉</span>
+      Cartas para mi tesorito
+    </div>
+  </header>
+
+  <section class="intro" aria-labelledby="letters-title">
+    <p class="intro__eyebrow">No todas las cartas son para abrir hoy</p>
+
+    <h1 id="letters-title">
+      Abrir
+      <span>cuando...</span>
+    </h1>
+
+    <p class="intro__copy">
+      Te dejé unas cuantas cosas escritas para distintos momentos.
+      No tienes que leerlas en orden: abre solamente la que se parezca
+      al momento en el que estás.
+    </p>
+  </section>
+
+  <section class="letter-drawer" aria-labelledby="drawer-title">
+    <header class="letter-drawer__heading">
+      <div>
+        <p>Correspondencia privada</p>
+        <h2 id="drawer-title">Para Bexabé ♥</h2>
+      </div>
+
+      <span class="opened-counter">
+        {{ openedCount() }}/{{ letters.length }} abiertas
+      </span>
+    </header>
+
+    <div class="envelopes-grid">
+      @for (letter of letters; track letter.id) {
+        <button
+          class="envelope-card"
+          type="button"
+          [attr.data-tone]="letter.tone"
+          [class.is-opened]="isOpened(letter.id)"
+          (click)="openLetter(letter)"
+        >
+          <span class="envelope-card__paper" aria-hidden="true"></span>
+
+          <span class="envelope-card__envelope" aria-hidden="true">
+            <span class="envelope-card__flap"></span>
+            <span class="envelope-card__seal">
+              {{ letter.stamp }}
+            </span>
+          </span>
+
+          <span class="envelope-card__copy">
+            <span class="envelope-card__eyebrow">
+              {{ letter.eyebrow }}
+            </span>
+
+            <strong>{{ letter.title }}</strong>
+            <small>{{ letter.preview }}</small>
+          </span>
+
+          <span class="envelope-card__status">
+            @if (isOpened(letter.id)) {
+              <span aria-hidden="true">♡</span>
+              Volver a leer
+            } @else {
+              <span aria-hidden="true">✉</span>
+              Abrir carta
+            }
+          </span>
+        </button>
+      }
+    </div>
+  </section>
+
+  @if (selectedLetter(); as letter) {
+    <section
+      class="opened-letter"
+      [attr.data-tone]="letter.tone"
+      aria-labelledby="opened-letter-title"
+    >
+      <button
+        class="opened-letter__close"
+        type="button"
+        (click)="closeLetter()"
+        aria-label="Cerrar carta"
+      >
+        ×
+      </button>
+
+      <div class="opened-letter__postmark" aria-hidden="true">
+        <span>ES → EC</span>
+        <strong>{{ letter.stamp }}</strong>
+      </div>
+
+      <div class="opened-letter__paper">
+        <p class="opened-letter__eyebrow">{{ letter.eyebrow }}</p>
+        <h2 id="opened-letter-title">{{ letter.title }}</h2>
+
+        <p class="opened-letter__greeting">
+          {{ letter.greeting }}
+        </p>
+
+        <div class="opened-letter__body">
+          @for (paragraph of letter.paragraphs; track $index) {
+            <p>{{ paragraph }}</p>
+          }
+        </div>
+
+        <p class="opened-letter__closing">
+          {{ letter.closing }}
+        </p>
+
+        <div class="opened-letter__signature" aria-hidden="true">
+          <span>Con amor,</span>
+          <strong>M ♥ B</strong>
+        </div>
+      </div>
+    </section>
+  } @else {
+    <section class="closed-note" aria-hidden="true">
+      <span>♡</span>
+      <p>Cuando abras una carta aparecerá aquí, como si sacaras el papel del sobre.</p>
+    </section>
+  }
+
+  <section class="letter-rules" aria-label="Pequeñas instrucciones">
+    <article class="letter-rule letter-rule--purple">
+      <span aria-hidden="true">✉</span>
+      <div>
+        <strong>No hay orden</strong>
+        <p>Abre la que necesites, no la siguiente.</p>
+      </div>
+    </article>
+
+    <article class="letter-rule letter-rule--sage">
+      <span aria-hidden="true">☁</span>
+      <div>
+        <strong>No tienes que responder</strong>
+        <p>Estas cartas no vienen con ninguna obligación.</p>
+      </div>
+    </article>
+
+    <article class="letter-rule letter-rule--pink">
+      <span aria-hidden="true">♥</span>
+      <div>
+        <strong>Puedes volver</strong>
+        <p>Una misma carta sirve más de una vez.</p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="letters-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Algunas palabras merecen quedarse guardadas para el momento adecuado.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>
