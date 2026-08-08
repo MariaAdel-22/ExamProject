@@ -1,0 +1,151 @@
+<main class="hug-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al nidito">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <div class="page-badge">
+      <span aria-hidden="true">♥</span>
+      Para cuando me necesites más cerca
+    </div>
+  </header>
+
+  <section class="intro" aria-labelledby="hug-title">
+    <p class="intro__eyebrow">Un pequeño abracito para mi mujer</p>
+
+    <h1 id="hug-title">
+      ¿Necesitas un
+      <span>abrazo de emergencia?</span>
+    </h1>
+
+    <p class="intro__copy">
+      No puedo cruzar la pantalla por el momento (solo quedan unas semanas), pero sí puedo dejarte aquí un sitio
+      al que venir siempre que necesites sentirme un poquito más cerca.
+    </p>
+  </section>
+
+  <section class="hug-card" aria-labelledby="hug-card-title">
+    <div class="hug-visual">
+      <div
+        class="hug-panda"
+        [class.is-hugging]="isHugging()"
+        aria-hidden="true"
+      >
+        <span class="hug-panda__bunny-ear hug-panda__bunny-ear--left"></span>
+        <span class="hug-panda__bunny-ear hug-panda__bunny-ear--right"></span>
+
+        <span class="hug-panda__head">
+          <span class="hug-panda__headband"></span>
+          <span class="hug-panda__eye hug-panda__eye--left"></span>
+          <span class="hug-panda__eye hug-panda__eye--right"></span>
+          <span class="hug-panda__nose"></span>
+          <span class="hug-panda__mouth"></span>
+          <span class="hug-panda__blush hug-panda__blush--left"></span>
+          <span class="hug-panda__blush hug-panda__blush--right"></span>
+        </span>
+
+        <span class="hug-panda__body"></span>
+        <span class="hug-panda__arm hug-panda__arm--left"></span>
+        <span class="hug-panda__arm hug-panda__arm--right"></span>
+
+        <span class="hug-panda__heart hug-panda__heart--one">♥</span>
+        <span class="hug-panda__heart hug-panda__heart--two">♥</span>
+        <span class="hug-panda__heart hug-panda__heart--three">♥</span>
+        <span class="hug-panda__heart hug-panda__heart--four">♥</span>
+      </div>
+
+      <div class="hug-visual__shadow" aria-hidden="true"></div>
+    </div>
+
+    <div class="hug-card__content">
+      <p class="hug-card__kicker">Tu pandita está preparado</p>
+      <h2 id="hug-card-title">Pulsa cuando necesites uno</h2>
+
+      @if (currentMessage(); as message) {
+        <div
+          class="hug-message"
+          [class.is-active]="isHugging()"
+          role="status"
+          aria-live="polite"
+        >
+          <div class="hug-message__topline">
+            <span aria-hidden="true">♥</span>
+            Abrazo recibido
+          </div>
+
+          <h3>{{ message.title }}</h3>
+          <p>{{ message.text }}</p>
+
+          <div class="hug-message__note">
+            <span aria-hidden="true">✦</span>
+            <p>{{ message.note }}</p>
+          </div>
+        </div>
+      } @else {
+        <div class="hug-message hug-message--empty">
+          <span aria-hidden="true">♡</span>
+          <p>
+            Cuando lo pulses, aquí aparecerá un abrazo hecho
+            especialmente para este momento.
+          </p>
+        </div>
+      }
+
+      <button
+        class="hug-button"
+        type="button"
+        (click)="sendHug()"
+        [disabled]="isHugging()"
+      >
+        @if (isHugging()) {
+          <span aria-hidden="true">🫂</span>
+          Abrazándote...
+        } @else {
+          <span aria-hidden="true">🫂</span>
+          Necesito un abrazo
+        }
+      </button>
+
+      <p class="hug-counter">
+        <span aria-hidden="true">♡</span>
+        {{ hugCounterText() }}
+      </p>
+    </div>
+  </section>
+
+  <section class="hug-reminders" aria-label="Pequeños recordatorios">
+    <article class="hug-reminder hug-reminder--purple">
+      <span aria-hidden="true">☁</span>
+      <div>
+        <strong>Puedes recuperar</strong>
+        <p>Ésta es tu zona para reponer energías.</p>
+      </div>
+    </article>
+
+    <article class="hug-reminder hug-reminder--pink">
+      <span aria-hidden="true">♥</span>
+      <div>
+        <strong>Puedes mostrarte</strong>
+        <p>No tienes que esconder cómo estás o que sientes.</p>
+      </div>
+    </article>
+
+    <article class="hug-reminder hug-reminder--sage">
+      <span aria-hidden="true">🌿</span>
+      <div>
+        <strong>Puedes descansar</strong>
+        <p>También debes cuidarte.</p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="hug-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Este botón no tiene límite de abrazos.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>
