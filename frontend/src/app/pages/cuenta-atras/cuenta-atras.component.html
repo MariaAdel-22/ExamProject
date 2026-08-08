@@ -1,0 +1,158 @@
+<main class="countdown-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al nidito">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <div class="page-badge">
+      <span aria-hidden="true">♥</span>
+      Cada día cuenta
+    </div>
+  </header>
+
+  <section class="intro" aria-labelledby="countdown-title">
+    <p class="intro__eyebrow">Poquito a poquito, pichoncita</p>
+
+    <h1 id="countdown-title">
+      Cada vez queda
+      <span>un poquito menos.</span>
+    </h1>
+
+    <p class="intro__copy">
+      Ya va quedando menos para terminar con éstos exámenes y poder divertirnos como siempre.
+    </p>
+  </section>
+
+  <section class="countdown-card" aria-labelledby="timer-heading">
+    <div class="countdown-card__top">
+      <div>
+        <p>Cuenta atrás hasta</p>
+        <h2 id="timer-heading">{{ targetDateLabel }}</h2>
+      </div>
+
+      <span class="countdown-card__sparkle" aria-hidden="true">✦</span>
+    </div>
+
+    @if (status() !== 'finished') {
+      <div
+        class="time-grid"
+        role="timer"
+        aria-live="off"
+        aria-label="Tiempo restante"
+      >
+        <div class="time-unit">
+          <strong>{{ pad(days()) }}</strong>
+          <span>Días</span>
+        </div>
+
+        <div class="time-unit">
+          <strong>{{ pad(hours()) }}</strong>
+          <span>Horas</span>
+        </div>
+
+        <div class="time-unit">
+          <strong>{{ pad(minutes()) }}</strong>
+          <span>Minutos</span>
+        </div>
+
+        <div class="time-unit">
+          <strong>{{ pad(seconds()) }}</strong>
+          <span>Segundos</span>
+        </div>
+      </div>
+    } @else {
+      <div class="finished-state" role="status" aria-live="polite">
+        <span class="finished-state__heart" aria-hidden="true">♥</span>
+        <strong>00 : 00 : 00 : 00</strong>
+        <p>La semana de exámenes ya quedó atrás.</p>
+      </div>
+    }
+
+    <div class="progress-section">
+      <div class="progress-section__labels">
+        <span>Comienzo</span>
+        <strong>{{ progressLabel() }}</strong>
+        <span>Meta</span>
+      </div>
+
+      <div
+        class="progress-track"
+        role="progressbar"
+        aria-label="Progreso de la semana de exámenes"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [attr.aria-valuenow]="progressPercentage()"
+      >
+        <div
+          class="progress-fill"
+          [style.width.%]="progressPercentage()"
+        ></div>
+
+        <div
+          class="progress-panda"
+          [style.left.%]="progressPercentage()"
+          aria-hidden="true"
+        >
+          <span class="progress-panda__ear progress-panda__ear--left"></span>
+          <span class="progress-panda__ear progress-panda__ear--right"></span>
+          <span class="progress-panda__head">
+            <span class="progress-panda__eye progress-panda__eye--left"></span>
+            <span class="progress-panda__eye progress-panda__eye--right"></span>
+            <span class="progress-panda__nose"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="support-note" [attr.data-status]="status()">
+      <div class="support-note__icon" aria-hidden="true">
+        @switch (status()) {
+          @case ('before') { ♡ }
+          @case ('during') { 💜 }
+          @case ('finished') { ✦ }
+        }
+      </div>
+
+      <div>
+        <strong>{{ statusTitle() }}</strong>
+        <p>{{ statusMessage() }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="little-reminders" aria-label="Pequeños recordatorios">
+    <article class="reminder-card reminder-card--purple">
+      <span aria-hidden="true">☁</span>
+      <div>
+        <strong>No corras</strong>
+        <p>No hace falta hacerlo todo hoy.</p>
+      </div>
+    </article>
+
+    <article class="reminder-card reminder-card--sage">
+      <span aria-hidden="true">💧</span>
+      <div>
+        <strong>Cuídate</strong>
+        <p>Recuerda levantarte de la silla cada 2 horas para estirar y cerrar los ojos 5 minutos.</p>
+      </div>
+    </article>
+
+    <article class="reminder-card reminder-card--pink">
+      <span aria-hidden="true">♥</span>
+      <div>
+        <strong>Estoy contigo</strong>
+        <p>Y dentro de poco en tus brazos.</p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="countdown-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Un día menos para poder descansar juntas.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>

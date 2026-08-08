@@ -1,0 +1,138 @@
+<main class="motivation-shell">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="back-link" routerLink="/" aria-label="Volver al nidito">
+      <span aria-hidden="true">←</span>
+      Volver al nidito
+    </a>
+
+    <div class="page-badge">
+      <span aria-hidden="true">♥</span>
+      Una dosis de cariño
+    </div>
+  </header>
+
+  <section class="intro" aria-labelledby="motivation-title">
+    <p class="intro__eyebrow">Para esos momentos en los que necesitas una dosis de tu caramelito</p>
+
+    <h1 id="motivation-title">
+      ¿Necesitas un poquito
+      <span>de motivación?</span>
+    </h1>
+
+    <p class="intro__copy">
+      Toca el botón siempre que lo necesites. Tengo guardados unos cuantos
+      mensajitos para recordarte cosas que te van a subir el ánimo.
+    </p>
+  </section>
+
+  <section class="motivation-card" aria-labelledby="motivation-card-title">
+    <div class="motivation-card__visual" aria-hidden="true">
+      <div class="panda-cheerer">
+        <span class="panda-cheerer__bunny-ear panda-cheerer__bunny-ear--left"></span>
+        <span class="panda-cheerer__bunny-ear panda-cheerer__bunny-ear--right"></span>
+
+        <span class="panda-cheerer__head">
+          <span class="panda-cheerer__headband"></span>
+          <span class="panda-cheerer__eye panda-cheerer__eye--left"></span>
+          <span class="panda-cheerer__eye panda-cheerer__eye--right"></span>
+          <span class="panda-cheerer__nose"></span>
+          <span class="panda-cheerer__mouth"></span>
+          <span class="panda-cheerer__blush panda-cheerer__blush--left"></span>
+          <span class="panda-cheerer__blush panda-cheerer__blush--right"></span>
+        </span>
+
+        <span class="panda-cheerer__body"></span>
+        <span class="panda-cheerer__arm panda-cheerer__arm--left"></span>
+        <span class="panda-cheerer__arm panda-cheerer__arm--right"></span>
+
+        <span class="panda-cheerer__heart panda-cheerer__heart--one">♥</span>
+        <span class="panda-cheerer__heart panda-cheerer__heart--two">♥</span>
+        <span class="panda-cheerer__heart panda-cheerer__heart--three">♥</span>
+      </div>
+    </div>
+
+    <div class="motivation-card__content">
+      <p class="motivation-card__kicker">Tu pandita tiene algo que decirte</p>
+      <h2 id="motivation-card-title">Pide un mensajito cuando quieras</h2>
+
+      @if (currentMessage(); as message) {
+        <div
+          class="message-box"
+          [attr.data-tone]="message.tone"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="message-box__quote" aria-hidden="true">“</span>
+
+          <p class="message-box__main">{{ message.text }}</p>
+
+          <div class="message-box__note">
+            <span aria-hidden="true">✦</span>
+            <p>{{ message.littleNote }}</p>
+          </div>
+        </div>
+      } @else {
+        <div class="message-box message-box--empty">
+          <span aria-hidden="true">♡</span>
+          <p>
+            Aquí aparecerá un mensaje para ti.
+            Puedes volver tantas veces como quieras.
+          </p>
+        </div>
+      }
+
+      <button
+        class="motivation-button"
+        type="button"
+        (click)="giveMeMotivation()"
+      >
+        <span aria-hidden="true">✨</span>
+        @if (currentMessage()) {
+          Dame otro poquito de ánimo
+        } @else {
+          Dame un poquito de ánimo
+        }
+      </button>
+
+      <p class="message-counter">
+        <span aria-hidden="true">♡</span>
+        {{ counterText() }}
+      </p>
+    </div>
+  </section>
+
+  <section class="soft-reminders" aria-label="Recordatorios">
+    <article class="soft-reminder soft-reminder--purple">
+      <span aria-hidden="true">☁</span>
+      <div>
+        <strong>Sin prisa</strong>
+        <p>No te apures, ve avanzando uno por uno.</p>
+      </div>
+    </article>
+
+    <article class="soft-reminder soft-reminder--sage">
+      <span aria-hidden="true">💧</span>
+      <div>
+        <strong>Con pausas</strong>
+        <p>Debes reponer fuerzas para avanzar.</p>
+      </div>
+    </article>
+
+    <article class="soft-reminder soft-reminder--pink">
+      <span aria-hidden="true">♥</span>
+      <div>
+        <strong>Con cariño</strong>
+        <p>De tu preocupada esposa.</p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="motivation-footer">
+    <span aria-hidden="true">✦</span>
+    <p>Si necesitas mensajitos, pulsa todas las veces que quieras que para eso están.</p>
+    <span aria-hidden="true">✦</span>
+  </footer>
+</main>
